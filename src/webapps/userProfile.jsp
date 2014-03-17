@@ -22,14 +22,20 @@ document.getElementById("save").style.visibility='hidden';
 }
 </script>
 <form method="post" action="ControllerServlet">
-Name: <input type="text" id="uname" name="userName" SIZE=20>
+<%@page import="jsp.learning.data.UserData"%> 
+<%
+UserData userData = (UserData) request.getAttribute("user");
+out.print(userData);
+%>
+
+Name: <input type="text" id="uname" name="userName" />
 <P>
-Age :  <input type="text" id="age" name="age" SIZE=20>
+Age :  <input type="text" id="age" name="age" />
 <P>
-Email : <input type="text" id="email" name="email" SIZE=20>
+Email : <input type="text" id="email" name="email" />
 <P>
-Mobile: <input type="text" id="mobile" name="mobile" SIZE=20>
-<P> <input type="button" id="edit" name="update" value="Edit" onclick=enableForEdit()>
+Mobile: <input type="text" id="mobile" name="mobile" />
+<P> <input type="button" id="edit" name="update" value="Edit" onclick=enableForEdit()/>
 <input type="Submit" id="save" name="update" value="Save">
 </form>
 </body>

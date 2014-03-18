@@ -23,9 +23,8 @@ public class RegistrationServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
-        UserData user= (UserData)req.getAttribute("user");
+        UserData user= (UserData)req.getSession().getAttribute("user");
         UserManager userManager = UserManager.getUsersInstance();
-        req.setAttribute("userManger" , userManager);
 
         /*if(req.getParameter("Save") != null){
             if(userManager.registerUser(user)){
@@ -38,6 +37,7 @@ public class RegistrationServlet extends HttpServlet {
             }
         }
         else*/
-            userManager.update(user);
+            if(userManager.update(user)) resp.sendRedirect("redirect.jsp");
+            else resp.sendRedirect("errorPage.jsp");
     }
 }

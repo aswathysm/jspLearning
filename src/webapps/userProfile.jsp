@@ -1,5 +1,21 @@
 <HTML>
 <body onload="load()">
+<form method="post" action="ControllerServlet">
+<%@page import="jsp.learning.data.UserData"%> 
+<%
+UserData userData = (UserData) session.getAttribute("user");
+%>
+
+Name: <input type="text" id="uname" name="userName" value="<%out.print(userData.getUserName());%>"/>
+<P>
+Age :  <input type="text" id="age" name="age" value="<%out.print(userData.getAge());%>" />
+<P>
+Email : <input type="text" id="email" name="email" value="<%out.print(userData.getEmail());%>" />
+<P>
+Mobile: <input type="text" id="mobile" name="mobile" value="<%out.print(userData.getMobile());%>" />
+<P> <input type="button" id="edit" name="update" value="Edit" onclick="enableForEdit()"/>
+<input type="button" id="save" name="update" value="Save" onclick="updateData()"/>
+
 <script type="text/javascript">
 
 function enableForEdit(){
@@ -20,23 +36,17 @@ document.getElementById("mobile").disabled=true;
 document.getElementById("save").style.visibility='hidden';
 
 }
-</script>
-<form method="post" action="ControllerServlet">
-<%@page import="jsp.learning.data.UserData"%> 
+function updateData(){
+alert("Updating data");
 <%
-UserData userData = (UserData) request.getAttribute("user");
-out.print(userData);
+userData.setUserName(%>document.getElementById("uname").value<%);
+userData.setAge(%>document.getElementById("age").value <%);
+userData.setEmail(%>document.getElementById("email").value<%);
+userData.setMobile(%>document.getElementById("mobile")<%);
 %>
-
-Name: <input type="text" id="uname" name="userName" />
-<P>
-Age :  <input type="text" id="age" name="age" />
-<P>
-Email : <input type="text" id="email" name="email" />
-<P>
-Mobile: <input type="text" id="mobile" name="mobile" />
-<P> <input type="button" id="edit" name="update" value="Edit" onclick=enableForEdit()/>
-<input type="Submit" id="save" name="update" value="Save">
+document.forms[0].submit();
+}
+</script>
 </form>
 </body>
 </HTML>

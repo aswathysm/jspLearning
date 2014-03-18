@@ -10,7 +10,6 @@ UserManager usermngr = UserManager.getUsersInstance();
 session.setAttribute("userMngr" , usermngr);
 boolean status=usermngr.registerUser(user);  
 if(status) {
-out.print("userName :" + user.getUserName()); 
 %>
 <jsp:include page="redirect.jsp"/>
 <%

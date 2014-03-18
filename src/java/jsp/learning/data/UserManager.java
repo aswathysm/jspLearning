@@ -30,13 +30,16 @@ public class UserManager {
         return users.add(user);
     }
 
-    public  void update(UserData user){
+    public  boolean update(UserData user){
 
         UserData newUserData = users.get(users.indexOf(user));
-
-        newUserData.setAge(user.getAge());
-        newUserData.setUserName(user.getUserName());
-        newUserData.setEmail(user.getEmail());
-        newUserData.setMobile(user.getMobile());
+        if(newUserData!=null){
+            newUserData.setAge(user.getAge());
+            newUserData.setUserName(user.getUserName());
+            newUserData.setEmail(user.getEmail());
+            newUserData.setMobile(user.getMobile());
+            return true;
+        }
+        else return false;
     }
 }

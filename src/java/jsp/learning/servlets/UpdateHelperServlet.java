@@ -14,18 +14,22 @@ import java.io.IOException;
  * Created by A-6077 on 3/13/14.
  */
 public class UpdateHelperServlet extends HttpServlet {
+
+    private UserData user ;
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    //Do nothing
+
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
-        UserData user= (UserData) req.getSession().getAttribute(req.getParameterNames().nextElement().toString());
+        user= (UserData) req.getSession().getAttribute(req.getParameterNames().nextElement().toString());
         UserManager userManager = UserManager.getUsersInstance();
         req.setAttribute("user", userManager.getUsers().get(userManager.getUsers().indexOf(user)));
-        RequestDispatcher rd=req.getRequestDispatcher("userProfile.jsp");
-        rd.forward(req, resp);
+        req.getSession().setAttribute("user",userManager.getUsers().get(userManager.getUsers().indexOf(user)));
+        resp.sendRedirect("userProfile.jsp");
+       /* RequestDispatcher rd=req.getRequestDispatcher("userProfile.jsp");
+        rd.include(req, resp);*/
     }
 }

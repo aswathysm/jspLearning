@@ -11,4 +11,12 @@
 		<servlet-name>ControllerServlet</servlet-name>  
 		<url-pattern>/ControllerServlet</url-pattern>  
 	</servlet-mapping>
+	<servlet>  
+		<servlet-name>UpdateHelperServlet</servlet-name>  
+		<servlet-class>jsp.learning.servlets.UpdateHelperServlet</servlet-class>  
+	</servlet>  
+	<servlet-mapping>  
+		<servlet-name>UpdateHelperServlet</servlet-name>  
+		<url-pattern>/UpdateHelperServlet</url-pattern>  
+	</servlet-mapping>
 </web-app>
